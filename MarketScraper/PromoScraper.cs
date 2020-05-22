@@ -7,23 +7,25 @@ using HtmlAgilityPack;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Globalization;
 
 namespace MarketScraper
 {
-    public class Scraper
+    public class PromoScraper
     {
-        public Scraper()
+        public PromoScraper()
         {
             BiedrImg = new List<string>();
             SparImg = new List<string>();
-            LidlPromos = new List<LidlProduct>();
+            LidlPromos = new List<Product>();
         }
 
-        public void ScrapeImages()
+        public async Task ScrapeImages()
         {
             var web = new HtmlWeb(); 
             var doc = web.Load("https://www.biedronka.pl/pl/ale-tydzien");
-            var Links = doc.DocumentNode.SelectNodes("//div[@id='container']/div[@class='inner']/div[@class='grid']/div/span/img[2]");
+            
+            var Links = await Task.Run(() => doc.DocumentNode.SelectNodes("//div[@id='container']/div[@class='inner']/div[@class='grid']/div/span/img[2]"));
 
             foreach (var link in Links)
             {
@@ -33,7 +35,7 @@ namespace MarketScraper
             
             doc = web.Load("https://spar.pl/promocje/");
 
-            Links = doc.DocumentNode.SelectNodes("//div[@class='block flex promocje']/div/img");
+            Links = await Task.Run(() => doc.DocumentNode.SelectNodes("//div[@class='block flex promocje']/div/img"));
 
             foreach (var link in Links)
             {
@@ -42,12 +44,12 @@ namespace MarketScraper
             }
         }
 
-        public void ScrapeLidl(string page)
+        public async Task ScrapeLidl(string page)
         {
             var web = new HtmlWeb();
             var doc = web.Load(page);
 
-            var Links = doc.DocumentNode.SelectNodes("//div[@class='page__main']/div/section/div/ul/li/div[2]/div/div/div[2]/div/div/div/a");
+            var Links = await Task.Run(() => doc.DocumentNode.SelectNodes("//div[@class='page__main']/div/section/div/ul/li[1]/div[2]/div/div/div[2]/div/div/div/a"));    //li[2] nastepny tydzien
 
             foreach(var link in Links)
             {
@@ -55,11 +57,23 @@ namespace MarketScraper
                 if (url != "")
                 {
                     doc = web.Load("https://www.lidl.pl/" + url);
-                    var Products = doc.DocumentNode.SelectNodes("//div[@class='page__main']/div/div/section/div/div/div");
+                    var Products = await Task.Run(() => doc.DocumentNode.SelectNodes("//div[@class='page__main']/div/div/section/div/div/div[@data-currency!='']"));
 
                     foreach(var Product in Products)
                     {
+                        try
+                        {
+                            url = Product.SelectSingleNode(".//article/a/div/picture/source").GetAttributeValue("srcset", "").Split(',')[0];
+                            var productName = Product.GetAttributeValue("data-name", "");
+                            var price = Product.GetAttributeValue("data-price", "").Replace(',', '.');
+                            var weight = Product.SelectSingleNode(".//article/a/span/div/div[2]").InnerText.Trim();
 
+                            LidlPromos.Add(new Product(url, productName, float.Parse(price, CultureInfo.InvariantCulture.NumberFormat), weight));
+                        }
+                        catch (Exception corruptProduct)
+                        {
+
+                        }
                     }
                 }
             }
@@ -119,10 +133,18 @@ namespace MarketScraper
 
         public List<string> BiedrImg { get; private set; }
         public List<string> SparImg { get; private set; }
-        public List<LidlProduct> LidlPromos { get; private set; }
+        public List<Product> LidlPromos { get; private set; }
 
-        public struct LidlProduct
+        public struct Product
         {
+            public Product(string imageUrl, string name, float price, string weight)
+            {
+                this.imageUrl = imageUrl;
+                this.name = name;
+                this.price = price;
+                this.weight = weight;
+            }
+
             public string imageUrl;
             public string name;
             public float price;
