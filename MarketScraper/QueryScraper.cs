@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
+using System.Net;
+using System.IO;
 
 namespace MarketScraper
 {
@@ -49,29 +51,40 @@ namespace MarketScraper
             }
         }
 
-        public void ScrapeSpar(string query)
+        public void ScrapeSpar(string query, string city)
         {
             var web = new HtmlWeb();
-            var doc = web.Load("https://e-spar.com.pl/index/asortyment/query/" + query);
+            string url = "/index/asortyment?sort=relevancy.desc&query=" + query;
+            var client = new MyWebClient();
+            HtmlDocument doc = client.GetPage("https://e-spar.com.pl/" + city);
 
-            var Products = doc.DocumentNode.SelectNodes("//div[@id='page']/main/div/div[2]/div[2]/div/div/div/div/div/form");
 
-            if (Products != null) foreach (var product in Products)
-                {
-                    try
+            while (url != "")
+            {
+                doc = client.GetPage("https://e-spar.com.pl" + url);
+                var Products = doc.DocumentNode.SelectNodes("//main/div/div[2]/div[2]/div/div[1]/div/div/div/form");
+
+                
+
+                if (Products != null) foreach (var product in Products)
                     {
-                        var imgUrl = product.SelectSingleNode(".//h3/a/span/img").GetAttributeValue("src", "");
-                        var name = product.SelectSingleNode(".//h3/a/span[2]").InnerText;
-                        var price = product.SelectSingleNode(".//span/em/span").InnerText.Replace(',', '.');
-                        var weight = product.SelectSingleNode(".//h3/a/span/span/span").InnerText;
+                        try
+                        {
+                            var imgUrl = product.SelectSingleNode(".//h3/a/span[1]/img").GetAttributeValue("data-src", "https://e-spar.com.pl/brak.png");
+                            var name = product.SelectSingleNode(".//h3/a/span[2]").InnerText;
+                            var price = product.SelectSingleNode(".//span/em/span").InnerText.Replace(',', '.');
+                            var weight = product.SelectSingleNode(".//h3/a/span/span/span").InnerText;
 
-                        SparProducts.Add(new PromoScraper.Product(imgUrl, name, float.Parse(price, CultureInfo.InvariantCulture.NumberFormat), weight));
-                    }
-                    catch (Exception corruptProduct)
-                    {
+                            SparProducts.Add(new PromoScraper.Product(imgUrl, name, float.Parse(price, CultureInfo.InvariantCulture.NumberFormat), weight));
+                        }
+                        catch (Exception corruptProduct)
+                        {
 
+                        }
                     }
-                }
+                try { url = doc.DocumentNode.SelectSingleNode("//main/div/div[2]/div[1]/div/div[2]/div/div/ul/li[@class='next']/a").GetAttributeValue("href", ""); }
+                catch(Exception nullnode) { url = ""; }
+            }
         }
 
         public List<PromoScraper.Product> BiedronkaProducts { get; private set; }

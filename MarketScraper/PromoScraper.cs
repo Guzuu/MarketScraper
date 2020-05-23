@@ -108,27 +108,34 @@ namespace MarketScraper
 
         public static Image ScaleImage(Image img, int width)
         {
-            int height = img.Height/(img.Width / width);
-
-            var destRect = new Rectangle(0, 0, width, height);
-            var OutputImage = new Bitmap(width, height);
-
-            using (var graphics = Graphics.FromImage(OutputImage))
+            try
             {
-                graphics.CompositingMode = CompositingMode.SourceCopy;
-                graphics.CompositingQuality = CompositingQuality.HighQuality;
-                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                graphics.SmoothingMode = SmoothingMode.HighQuality;
-                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                
-                using (var wrapMode = new ImageAttributes())
-                {
-                    wrapMode.SetWrapMode(WrapMode.Clamp);
-                    graphics.DrawImage(img, destRect, 0, 0, img.Width, img.Height, GraphicsUnit.Pixel, wrapMode);
-                }
-            }
+                int height = img.Height / (img.Width / width);
 
-            return OutputImage;
+                var destRect = new Rectangle(0, 0, width, height);
+                var OutputImage = new Bitmap(width, height);
+
+                using (var graphics = Graphics.FromImage(OutputImage))
+                {
+                    graphics.CompositingMode = CompositingMode.SourceCopy;
+                    graphics.CompositingQuality = CompositingQuality.HighQuality;
+                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    graphics.SmoothingMode = SmoothingMode.HighQuality;
+                    graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                    using (var wrapMode = new ImageAttributes())
+                    {
+                        wrapMode.SetWrapMode(WrapMode.Clamp);
+                        graphics.DrawImage(img, destRect, 0, 0, img.Width, img.Height, GraphicsUnit.Pixel, wrapMode);
+                    }
+                }
+
+                return OutputImage;
+            }
+            catch(Exception ImageError)
+            {
+                return ScaleImage(DownloadImageFromUrl("https://e-spar.com.pl/brak.png"), width);
+            }
         }
 
         public List<string> BiedrImg { get; private set; }
