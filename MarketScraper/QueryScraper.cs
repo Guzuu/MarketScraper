@@ -24,9 +24,9 @@ namespace MarketScraper
         public void ScrapeBiedronka(string query)
         {
             var web = new HtmlWeb();
-            var doc = web.Load("https://www.biedronka.pl/pl/searchhub,query," + query);
+            var doc = web.Load("https://www.biedronka.pl/pl/search,type,1,query," + query);
 
-            var Links = doc.DocumentNode.SelectNodes("//div[@id='container']/div[@class='inner']/div[@class='search-result']/div/div/div/div/div/a");
+            var Links = doc.DocumentNode.SelectNodes("//div[@id='container']/div[2]/div/article/ul/li/a");
             
             if (Links != null) foreach (var link in Links)
             {

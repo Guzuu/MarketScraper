@@ -20,35 +20,35 @@ namespace MarketScraper
             s1.ScrapeLidl("https://www.lidl.pl/pl/oferta-spozywcza");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonGetPromos_Click(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Clear();
-            dataGridView2.Rows.Clear();
-            dataGridView3.Rows.Clear();
+            dataGridViewBiedronkaPromo.Rows.Clear();
+            dataGridViewSparPromo.Rows.Clear();
+            dataGridViewLidlPromo.Rows.Clear();
 
             foreach (string url in s1.BiedrImg)
             {
-                dataGridView1.Rows.Add(PromoScraper.ScaleImage(PromoScraper.DownloadImageFromUrl(url), 400));
+                dataGridViewBiedronkaPromo.Rows.Add(PromoScraper.ScaleImage(PromoScraper.DownloadImageFromUrl(url), 400));
             }
 
             foreach (string url in s1.SparImg)
             {
-                dataGridView2.Rows.Add(PromoScraper.ScaleImage(PromoScraper.DownloadImageFromUrl(url), 400));
+                dataGridViewSparPromo.Rows.Add(PromoScraper.ScaleImage(PromoScraper.DownloadImageFromUrl(url), 400));
             }
 
 
             foreach (var product in s1.LidlPromos)
             {
-                dataGridView3.Rows.Add(PromoScraper.ScaleImage(PromoScraper.DownloadImageFromUrl(product.imageUrl), 200), product.name + "\n" + product.price + "zł\n" + product.weight);
+                dataGridViewLidlPromo.Rows.Add(PromoScraper.ScaleImage(PromoScraper.DownloadImageFromUrl(product.imageUrl), 200), product.name + "\n" + product.price + "zł\n" + product.weight);
             }
 
-            dataGridView1.Columns[0].HeaderText = "Biedronka (" + s1.BiedrImg.Count + ")";
-            dataGridView2.Columns[0].HeaderText = "Spar (" + s1.SparImg.Count + ")";
-            dataGridView3.Columns[0].HeaderText = "Lidl (" + s1.LidlPromos.Count + ")";
+            dataGridViewBiedronkaPromo.Columns[0].HeaderText = "Biedronka (" + s1.BiedrImg.Count + ")";
+            dataGridViewSparPromo.Columns[0].HeaderText = "Spar (" + s1.SparImg.Count + ")";
+            dataGridViewLidlPromo.Columns[0].HeaderText = "Lidl (" + s1.LidlPromos.Count + ")";
 
-            dataGridView1.AutoResizeRows();
-            dataGridView2.AutoResizeRows();
-            dataGridView3.AutoResizeRows();
+            dataGridViewBiedronkaPromo.AutoResizeRows();
+            dataGridViewSparPromo.AutoResizeRows();
+            dataGridViewLidlPromo.AutoResizeRows();
         }
     }
 }

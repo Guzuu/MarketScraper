@@ -14,6 +14,8 @@ namespace MarketScraper
     {
         QueryScraper qs1 = new QueryScraper();
 
+        Form4 f4 = new Form4();
+
         public Form3()
         {
             InitializeComponent();
@@ -39,8 +41,28 @@ namespace MarketScraper
                 dataGridViewSparQuery.Rows.Add(PromoScraper.ScaleImage(PromoScraper.DownloadImageFromUrl(product.imageUrl), 200), product.name + "\n" + product.price + "zł\n" + product.weight);
             }
 
+            dataGridViewBiedronkaQuery.Columns[0].HeaderText = "Biedronka (" + qs1.BiedronkaProducts.Count + ")";
+            dataGridViewSparQuery.Columns[0].HeaderText = "Spar (" + qs1.SparProducts.Count + ")";
+
             dataGridViewBiedronkaQuery.AutoResizeRows();
             dataGridViewSparQuery.AutoResizeRows();
+        }
+
+        private void dataGridViewBiedronkaQuery_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            f4.BiedronkaCart.Add(qs1.BiedronkaProducts[e.RowIndex]);
+            MessageBox.Show("Do koszyka dodano produkt:\n" + qs1.BiedronkaProducts[e.RowIndex].name);
+        }
+
+        private void dataGridViewSparQuery_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            f4.SparCart.Add(qs1.SparProducts[e.RowIndex]);
+            MessageBox.Show("Do koszyka dodano produkt:\n" + qs1.SparProducts[e.RowIndex].name);
+        }
+
+        private void buttonCart_Click(object sender, EventArgs e)
+        {
+            f4.Show();
         }
     }
 }

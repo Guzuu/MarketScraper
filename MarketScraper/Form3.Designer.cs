@@ -43,6 +43,7 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.textBoxCity = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBiedronkaQuery)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSparQuery)).BeginInit();
@@ -54,7 +55,7 @@
             this.textBoxProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBoxProduct.Location = new System.Drawing.Point(218, 19);
             this.textBoxProduct.Name = "textBoxProduct";
-            this.textBoxProduct.Size = new System.Drawing.Size(203, 24);
+            this.textBoxProduct.Size = new System.Drawing.Size(178, 24);
             this.textBoxProduct.TabIndex = 0;
             // 
             // dataGridViewBiedronkaQuery
@@ -96,6 +97,7 @@
             this.dataGridViewBiedronkaQuery.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridViewBiedronkaQuery.Size = new System.Drawing.Size(421, 427);
             this.dataGridViewBiedronkaQuery.TabIndex = 4;
+            this.dataGridViewBiedronkaQuery.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBiedronkaQuery_CellDoubleClick);
             // 
             // dataGridViewImageColumn1
             // 
@@ -130,6 +132,7 @@
             this.buttonCart.TabIndex = 6;
             this.buttonCart.Text = "Koszyk";
             this.buttonCart.UseVisualStyleBackColor = true;
+            this.buttonCart.Click += new System.EventHandler(this.buttonCart_Click);
             // 
             // buttonSearch
             // 
@@ -181,6 +184,7 @@
             this.dataGridViewSparQuery.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridViewSparQuery.Size = new System.Drawing.Size(421, 427);
             this.dataGridViewSparQuery.TabIndex = 8;
+            this.dataGridViewSparQuery.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSparQuery_CellDoubleClick);
             // 
             // dataGridViewImageColumn2
             // 
@@ -198,6 +202,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.textBoxCity);
             this.groupBox1.Controls.Add(this.buttonCart);
             this.groupBox1.Controls.Add(this.buttonSearch);
@@ -206,23 +211,33 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(840, 61);
+            this.groupBox1.Size = new System.Drawing.Size(842, 61);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(402, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 18);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Miasto:";
             // 
             // textBoxCity
             // 
             this.textBoxCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxCity.Location = new System.Drawing.Point(427, 19);
+            this.textBoxCity.Location = new System.Drawing.Point(465, 19);
             this.textBoxCity.Name = "textBoxCity";
-            this.textBoxCity.Size = new System.Drawing.Size(163, 24);
+            this.textBoxCity.Size = new System.Drawing.Size(125, 24);
             this.textBoxCity.TabIndex = 8;
             // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(840, 488);
+            this.ClientSize = new System.Drawing.Size(842, 488);
             this.Controls.Add(this.dataGridViewSparQuery);
             this.Controls.Add(this.dataGridViewBiedronkaQuery);
             this.Controls.Add(this.groupBox1);
@@ -250,5 +265,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBoxCity;
+        private System.Windows.Forms.Label label2;
     }
 }
