@@ -8,6 +8,7 @@ namespace MarketScraper
 {
     static class Program
     {
+        static public Form1 f1;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,7 +17,8 @@ namespace MarketScraper
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form3());
+            f1 = new Form1();
+            Application.Run(f1);
         }
     }
 }

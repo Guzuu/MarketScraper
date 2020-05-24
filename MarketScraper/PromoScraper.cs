@@ -20,12 +20,12 @@ namespace MarketScraper
             LidlPromos = new List<Product>();
         }
 
-        public async Task ScrapeImages()
+        public void ScrapeImages()
         {
             var web = new HtmlWeb(); 
             var doc = web.Load("https://www.biedronka.pl/pl/ale-tydzien");
             
-            var Links = await Task.Run(() => doc.DocumentNode.SelectNodes("//div[@id='container']/div[@class='inner']/div[@class='grid']/div/span/img[2]"));
+            var Links = doc.DocumentNode.SelectNodes("//div[@id='container']/div[@class='inner']/div[@class='grid']/div/span/img[2]");
 
             foreach (var link in Links)
             {
@@ -35,7 +35,7 @@ namespace MarketScraper
             
             doc = web.Load("https://spar.pl/promocje/");
 
-            Links = await Task.Run(() => doc.DocumentNode.SelectNodes("//div[@class='block flex promocje']/div/img"));
+            Links = doc.DocumentNode.SelectNodes("//div[@class='block flex promocje']/div/img");
 
             foreach (var link in Links)
             {
@@ -44,22 +44,22 @@ namespace MarketScraper
             }
         }
 
-        public async Task ScrapeLidl(string page)
+        public void ScrapeLidl(string page)
         {
             var web = new HtmlWeb();
             var doc = web.Load(page);
 
-            var Links = await Task.Run(() => doc.DocumentNode.SelectNodes("//div[@class='page__main']/div/section/div/ul/li[1]/div[2]/div/div/div[2]/div/div/div/a"));    //li[2] nastepny tydzien
+            var Links = doc.DocumentNode.SelectNodes("//div[@class='page__main']/div/section/div/ul/li[1]/div[2]/div/div/div[2]/div/div/div/a");    //li[2] nastepny tydzien
 
             foreach(var link in Links)
             {
                 var url = link.GetAttributeValue("href", "");
                 if (url != "")
                 {
-                    doc = web.Load("https://www.lidl.pl/" + url);
-                    var Products = await Task.Run(() => doc.DocumentNode.SelectNodes("//div[@class='page__main']/div/div/section/div/div/div[@data-currency!='']"));
+                    doc = web.Load("https://www.lidl.pl" + url);
+                    var Products = doc.DocumentNode.SelectNodes("//div/div/div/section/div/div/div[@data-currency!='']");
 
-                    foreach(var Product in Products)
+                    if (Products != null) foreach (var Product in Products)
                     {
                         try
                         {

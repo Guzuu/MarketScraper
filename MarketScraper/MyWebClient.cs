@@ -31,18 +31,25 @@ namespace MarketScraper
             //This is the important part.
             request.CookieContainer = _cookies;
 
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            var stream = response.GetResponseStream();
-
-            //When you get the response from the website, the cookies will be stored
-            //automatically in "_cookies".
-
-            using (var reader = new StreamReader(stream))
+            try
             {
-                string html = reader.ReadToEnd();
-                var doc = new HtmlDocument();
-                doc.LoadHtml(html);
-                return doc;
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                var stream = response.GetResponseStream();
+
+                //When you get the response from the website, the cookies will be stored
+                //automatically in "_cookies".
+
+                using (var reader = new StreamReader(stream))
+                {
+                    string html = reader.ReadToEnd();
+                    var doc = new HtmlDocument();
+                    doc.LoadHtml(html);
+                    return doc;
+                }
+            }
+            catch (Exception NotFound404)
+            {
+                return null;
             }
         }
     }

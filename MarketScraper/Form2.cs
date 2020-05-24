@@ -13,6 +13,7 @@ namespace MarketScraper
     public partial class Form2 : Form
     {
         PromoScraper s1 = new PromoScraper();
+        Form5 loading = new Form5();
         public Form2()
         {
             InitializeComponent();
@@ -22,6 +23,11 @@ namespace MarketScraper
 
         private void buttonGetPromos_Click(object sender, EventArgs e)
         {
+            loading.Show();
+            loading.Location = Location;
+            loading.Size = Size;
+            Text = "Ładowanie...";
+
             dataGridViewBiedronkaPromo.Rows.Clear();
             dataGridViewSparPromo.Rows.Clear();
             dataGridViewLidlPromo.Rows.Clear();
@@ -49,6 +55,15 @@ namespace MarketScraper
             dataGridViewBiedronkaPromo.AutoResizeRows();
             dataGridViewSparPromo.AutoResizeRows();
             dataGridViewLidlPromo.AutoResizeRows();
+
+            loading.Hide();
+            Text = "Promocje";
+        }
+
+        private void buttonMenu_Click(object sender, EventArgs e)
+        {
+            Hide();
+            Program.f1.Show();
         }
     }
 }

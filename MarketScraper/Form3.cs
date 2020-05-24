@@ -15,6 +15,7 @@ namespace MarketScraper
         QueryScraper qs1 = new QueryScraper();
 
         Form4 f4 = new Form4();
+        Form5 loading = new Form5();
 
         public Form3()
         {
@@ -23,6 +24,13 @@ namespace MarketScraper
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
+            if (textBoxProduct.Text == "") return;
+            loading.Show();
+            loading.Location = Location;
+            loading.Size = Size;
+
+            Text = "Ładowanie...";
+
             dataGridViewBiedronkaQuery.Rows.Clear();
             dataGridViewSparQuery.Rows.Clear();
             qs1.BiedronkaProducts.Clear();
@@ -46,23 +54,56 @@ namespace MarketScraper
 
             dataGridViewBiedronkaQuery.AutoResizeRows();
             dataGridViewSparQuery.AutoResizeRows();
+
+            loading.Hide();
+            Text = "Wyszukiwarka produktów";
         }
 
         private void dataGridViewBiedronkaQuery_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            f4.BiedronkaCart.Add(qs1.BiedronkaProducts[e.RowIndex]);
-            MessageBox.Show("Do koszyka dodano produkt:\n" + qs1.BiedronkaProducts[e.RowIndex].name);
+            PromoScraper.Product product = qs1.BiedronkaProducts[e.RowIndex];
+            if (!f4.BiedronkaCart.ContainsKey(product))
+            {
+                f4.BiedronkaCart.Add(product, 1);
+                MessageBox.Show("Do koszyka dodano produkt:\n" + product.name);
+                f4.UpdateCart(sender);
+            }
+            else
+            {
+                f4.BiedronkaCart[product]++;
+                MessageBox.Show("Do koszyka ponownie dodano produkt:\n" + product.name);
+                f4.UpdateCart(sender);
+            }
+
         }
 
         private void dataGridViewSparQuery_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            f4.SparCart.Add(qs1.SparProducts[e.RowIndex]);
-            MessageBox.Show("Do koszyka dodano produkt:\n" + qs1.SparProducts[e.RowIndex].name);
+            PromoScraper.Product product = qs1.SparProducts[e.RowIndex];
+            if (!f4.SparCart.ContainsKey(product))
+            {
+                f4.SparCart.Add(product, 1);
+                MessageBox.Show("Do koszyka dodano produkt:\n" + product.name);
+                f4.UpdateCart(sender);
+            }
+            else
+            {
+                f4.SparCart[product]++;
+                MessageBox.Show("Do koszyka ponownie dodano produkt:\n" + product.name);
+                f4.UpdateCart(sender);
+            }
         }
 
         private void buttonCart_Click(object sender, EventArgs e)
         {
             f4.Show();
+        }
+
+        private void buttonMenu_Click(object sender, EventArgs e)
+        {
+            f4.Hide();
+            Hide();
+            Program.f1.Show();
         }
     }
 }

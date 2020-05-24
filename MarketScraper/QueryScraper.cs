@@ -59,7 +59,7 @@ namespace MarketScraper
             HtmlDocument doc = client.GetPage("https://e-spar.com.pl/" + city);
 
 
-            while (url != "")
+            if (doc != null) while (url != "")
             {
                 doc = client.GetPage("https://e-spar.com.pl" + url);
                 var Products = doc.DocumentNode.SelectNodes("//main/div/div[2]/div[2]/div/div[1]/div/div/div/form");
