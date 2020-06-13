@@ -27,7 +27,7 @@ namespace MarketScraper
             
             var Links = doc.DocumentNode.SelectNodes("//div[@id='container']/div[@class='inner']/div[@class='grid']/div/span/img[2]");
 
-            foreach (var link in Links)
+            if (Links != null) foreach (var link in Links)
             {
                 string url = link.GetAttributeValue("src", "");
                 if (url != "") BiedrImg.Add(url);
@@ -35,9 +35,9 @@ namespace MarketScraper
             
             doc = web.Load("https://spar.pl/promocje/");
 
-            Links = doc.DocumentNode.SelectNodes("//div[@class='block flex promocje']/div/img");
+            Links = doc.DocumentNode.SelectNodes("//div[@class='block']/div[@class='flex']/div/img");
 
-            foreach (var link in Links)
+            if (Links != null) foreach (var link in Links)
             {
                 string url = link.GetAttributeValue("src", "");
                 if (url != "") SparImg.Add(url);
@@ -51,7 +51,7 @@ namespace MarketScraper
 
             var Links = doc.DocumentNode.SelectNodes("//div[@class='page__main']/div/section/div/ul/li[1]/div[2]/div/div/div[2]/div/div/div/a");    //li[2] nastepny tydzien
 
-            foreach(var link in Links)
+            if (Links != null) foreach (var link in Links)
             {
                 var url = link.GetAttributeValue("href", "");
                 if (url != "")

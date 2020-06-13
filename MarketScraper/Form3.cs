@@ -46,7 +46,7 @@ namespace MarketScraper
 
             foreach (var product in qs1.SparProducts)
             {
-                dataGridViewSparQuery.Rows.Add(PromoScraper.ScaleImage(PromoScraper.DownloadImageFromUrl(product.imageUrl), 200), product.name + "\n" + product.price + "zł\n" + product.weight);
+                dataGridViewSparQuery.Rows.Add(PromoScraper.ScaleImage(PromoScraper.DownloadImageFromUrl(product.imageUrl), 150), product.name + "\n" + product.price + "zł\n" + product.weight);
             }
 
             dataGridViewBiedronkaQuery.Columns[0].HeaderText = "Biedronka (" + qs1.BiedronkaProducts.Count + ")";
