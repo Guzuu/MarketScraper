@@ -30,6 +30,7 @@
         {
             this.buttonPromo = new System.Windows.Forms.Button();
             this.buttonQuery = new System.Windows.Forms.Button();
+            this.buttonOrders = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonPromo
@@ -58,6 +59,19 @@
             this.buttonQuery.UseVisualStyleBackColor = false;
             this.buttonQuery.Click += new System.EventHandler(this.buttonQuery_Click);
             // 
+            // buttonOrders
+            // 
+            this.buttonOrders.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.buttonOrders.BackColor = System.Drawing.Color.Goldenrod;
+            this.buttonOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonOrders.Location = new System.Drawing.Point(277, 269);
+            this.buttonOrders.Name = "buttonOrders";
+            this.buttonOrders.Size = new System.Drawing.Size(182, 71);
+            this.buttonOrders.TabIndex = 2;
+            this.buttonOrders.Text = "Zamówienia";
+            this.buttonOrders.UseVisualStyleBackColor = false;
+            this.buttonOrders.Click += new System.EventHandler(this.buttonOrders_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -65,6 +79,7 @@
             this.BackgroundImage = global::MarketScraper.Properties.Resources.MSmainBG;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(714, 476);
+            this.Controls.Add(this.buttonOrders);
             this.Controls.Add(this.buttonQuery);
             this.Controls.Add(this.buttonPromo);
             this.Name = "Form1";
@@ -77,6 +92,7 @@
 
         private System.Windows.Forms.Button buttonPromo;
         private System.Windows.Forms.Button buttonQuery;
+        private System.Windows.Forms.Button buttonOrders;
     }
 }
 

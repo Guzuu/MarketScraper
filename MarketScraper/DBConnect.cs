@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace MarketScraper
 {
@@ -81,7 +82,7 @@ namespace MarketScraper
         }
 
         //Insert statement
-        public void Insert(Klient klient, float cenatotal, Dictionary<PromoScraper.Product, int> produkty)
+        public void Insert(Client klient, float cenatotal, Dictionary<PromoScraper.Product, int> produkty, string sklep)
         {
             string query;
 
@@ -92,7 +93,7 @@ namespace MarketScraper
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 cmd.ExecuteNonQuery();
 
-                query = $"INSERT INTO `Zamowienia` (`id`, `data`, `klientid`, `cena`) VALUES (NULL, '{DateTime.Now.Date.ToString("yyyy-MM-dd")}', '{cmd.LastInsertedId}', '{cenatotal}');";
+                query = $"INSERT INTO `Zamowienia` (`id`, `data`, `klientid`, `cena`, `sklep`) VALUES (NULL, '{DateTime.Now.Date.ToString("yyyy-MM-dd")}', '{cmd.LastInsertedId}', '{cenatotal.ToString()}', '{sklep}');";
                 cmd = new MySqlCommand(query, connection);
                 cmd.ExecuteNonQuery();
 
@@ -100,7 +101,7 @@ namespace MarketScraper
 
                 foreach(KeyValuePair<PromoScraper.Product, int> produkt in produkty)
                 {
-                    query = $"INSERT INTO `Produkty` (`zamowienieid`, `zdjecie`, `nazwa`, `cena`, `waga`, `ilosc`) VALUES('{zamid}', '{produkt.Key.imageUrl}', '{produkt.Key.name}', '{produkt.Key.price}', '{produkt.Key.weight}', '{produkt.Value}');";
+                    query = $"INSERT INTO `Produkty` (`zamowienieid`, `zdjecie`, `nazwa`, `cena`, `waga`, `ilosc`) VALUES('{zamid}', '{produkt.Key.imageUrl}', '{produkt.Key.name}', '{produkt.Key.price.ToString()}', '{produkt.Key.weight}', '{produkt.Value}');";
                     cmd = new MySqlCommand(query, connection);
                     cmd.ExecuteNonQuery();
                 }
@@ -113,7 +114,7 @@ namespace MarketScraper
         //Delete statement
         public void Delete(int id)
         {
-            string query = "DELETE FROM Zamowienia WHERE id='"+id+"'";
+            string query = $"DELETE FROM `Zamowienia` WHERE `id`='{id}';";
 
             if (this.OpenConnection() == true)
             {
@@ -123,11 +124,76 @@ namespace MarketScraper
             }
         }
 
-        /*//Select statement
-        public List<PromoScraper.Product>[] Select()
+        //Select statements
+        public List<Zamowienie> SelectOrders()
         {
+            string query = "SELECT * FROM `Zamowienia`";
+            List<Zamowienie> zamowienia = new List<Zamowienie>();
+            
+            //Open connection
+            if (this.OpenConnection() == true)
+            {
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    zamowienia.Add(new Zamowienie(int.Parse(dataReader["id"] + ""), DateTime.Parse(dataReader["data"] + "").ToShortDateString(), int.Parse(dataReader["klientid"] + ""), float.Parse(dataReader["cena"] + "", CultureInfo.InvariantCulture.NumberFormat), dataReader["sklep"] + ""));
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                this.CloseConnection();
+
+                //return list to be displayed
+                return zamowienia;
+            }
+            else
+            {
+                return zamowienia;
+            }
         }
 
+        public Dictionary<PromoScraper.Product, int> SelectOrderDetails(int zamid)
+        {
+            string query = $"SELECT * FROM `Produkty` WHERE `zamowienieid`='{zamid}'";
+            Dictionary<PromoScraper.Product, int> produkty = new Dictionary<PromoScraper.Product, int>();
+
+            //Open connection
+            if (this.OpenConnection() == true)
+            {
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    produkty.Add(new PromoScraper.Product(dataReader["zdjecie"] + "", dataReader["nazwa"] + "", float.Parse(dataReader["cena"] + "", CultureInfo.InvariantCulture.NumberFormat), dataReader["waga"] + ""), int.Parse(dataReader["ilosc"] + ""));
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                this.CloseConnection();
+
+                //return list to be displayed
+                return produkty;
+            }
+            else
+            {
+                return produkty;
+            }
+        }
+
+        /*
         //Count statement
         public int Count()
         {
@@ -142,25 +208,21 @@ namespace MarketScraper
         public void Restore()
         {
         }*/
-
-        public struct Klient
+        public struct Zamowienie
         {
-            public Klient(string imie, string nazwisko, string miasto, string ulica, string KP, int tel)
+            public Zamowienie(int id, string data, int klientid, float cena, string sklep)
             {
-                this.imie = imie;
-                this.nazwisko = nazwisko;
-                this.miasto = miasto;
-                this.ulica = ulica;
-                this.KP = KP;
-                this.tel = tel;
+                this.id = id;
+                this.data = data;
+                this.klientid = klientid;
+                this.cena = cena;
+                this.sklep = sklep;
             }
-
-            public string imie;
-            public string nazwisko;
-            public string miasto;
-            public string ulica;
-            public string KP;
-            public int tel;
+            public int id;
+            public string data;
+            public int klientid;
+            public float cena;
+            public string sklep;
         }
     }
 }

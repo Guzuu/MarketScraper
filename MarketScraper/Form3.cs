@@ -105,5 +105,10 @@ namespace MarketScraper
             Hide();
             Program.f1.Show();
         }
+
+        private void Form3_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Program.f1.Show();
+        }
     }
 }

@@ -16,6 +16,9 @@ namespace MarketScraper
         public Dictionary<PromoScraper.Product, int> BiedronkaCart;
         public Dictionary<PromoScraper.Product, int> SparCart;
 
+        float suma1;
+        float suma2;
+
         public Form4()
         {
             InitializeComponent();
@@ -28,8 +31,8 @@ namespace MarketScraper
             dataGridViewBiedronkaCart.Rows.Clear();
             dataGridViewSparCart.Rows.Clear();
 
-            float suma1 = 0;
-            float suma2 = 0;
+            suma1 = 0;
+            suma2 = 0;
 
             foreach (var keyValuePair in BiedronkaCart)
             {
@@ -71,6 +74,7 @@ namespace MarketScraper
 
         private void buttonSaveListSpar_Click(object sender, EventArgs e)
         {
+            if (SparCart.Count == 0) return;
             int DGVw = 400, DGVh = dataGridViewSparCart[0, 1].Size.Height * dataGridViewSparCart.RowCount;
             Bitmap Layout = new Bitmap(DGVw, DGVh);
 
@@ -91,6 +95,7 @@ namespace MarketScraper
 
         private void buttonSaveListBiedronka_Click(object sender, EventArgs e)
         {
+            if (BiedronkaCart.Count == 0) return;
             int DGVw = 400, DGVh = dataGridViewBiedronkaCart[0, 1].Size.Height * dataGridViewBiedronkaCart.RowCount;
             Bitmap Layout = new Bitmap(DGVw, DGVh);
 
@@ -111,9 +116,15 @@ namespace MarketScraper
 
         private void buttonOrder_Click(object sender, EventArgs e)
         {
+            Form6 f6 = new Form6(this);
+            f6.Show(); 
+        }
+
+        public void SetOrder(Client c1)
+        {
             DBConnect db = new DBConnect();
-            DBConnect.Klient k1 = new DBConnect.Klient("test56", "test", "test", "test", "test", 997);
-            db.Insert(k1, 550, BiedronkaCart);
+            if (BiedronkaCart.Count != 0) db.Insert(c1, suma1, BiedronkaCart, "Biedronka");
+            if (SparCart.Count != 0) db.Insert(c1, suma2, SparCart, "Spar");
         }
     }
 }

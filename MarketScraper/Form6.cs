@@ -12,9 +12,25 @@ namespace MarketScraper
 {
     public partial class Form6 : Form
     {
-        public Form6()
+        public Form6(Form4 f4)
         {
             InitializeComponent();
+            this.f4 = f4;
         }
+
+        Form4 f4;
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text != "" && textBox2.Text != "" && textBox3.Text != "" && textBox6.Text != "" && textBox4.Text != "" && textBox5.Text != "")
+            {
+                Client c1 = new Client(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, int.Parse(textBox6.Text));
+                f4.SetOrder(c1);
+                this.Close();
+            }
+            else MessageBox.Show("Wypełnij wszystkie pola");
+        }
+
+
     }
 }

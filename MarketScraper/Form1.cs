@@ -14,6 +14,7 @@ namespace MarketScraper
     {
         Form2 f2;
         Form3 f3;
+        Form7 f7;
 
         public Form1()
         {
@@ -31,6 +32,13 @@ namespace MarketScraper
         {
             f3 = new Form3();
             f3.Show();
+            Program.f1.Hide();
+        }
+
+        private void buttonOrders_Click(object sender, EventArgs e)
+        {
+            f7 = new Form7();
+            f7.Show();
             Program.f1.Hide();
         }
     }
