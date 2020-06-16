@@ -14,6 +14,10 @@ namespace MarketScraper
     {
         PromoScraper s1 = new PromoScraper();
         Form5 loading = new Form5();
+
+        /// <summary>
+        /// Scrapes images and bunch of lidl products
+        /// </summary>
         public Form2()
         {
             InitializeComponent();
@@ -21,6 +25,11 @@ namespace MarketScraper
             s1.ScrapeLidl("https://www.lidl.pl/pl/oferta-spozywcza");
         }
 
+        /// <summary>
+        /// Assembles data grids from scraped data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonGetPromos_Click(object sender, EventArgs e)
         {
             loading.Show();
@@ -60,12 +69,22 @@ namespace MarketScraper
             Text = "Promocje";
         }
 
+        /// <summary>
+        /// Back to main menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonMenu_Click(object sender, EventArgs e)
         {
             Hide();
             Program.f1.Show();
         }
 
+        /// <summary>
+        /// Open main menu form if this form closes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)
         {
             Program.f1.Show();

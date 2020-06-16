@@ -22,6 +22,11 @@ namespace MarketScraper
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Searches websites for specified product
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             if (textBoxProduct.Text == "") return;
@@ -59,6 +64,11 @@ namespace MarketScraper
             Text = "Wyszukiwarka produktów";
         }
 
+        /// <summary>
+        /// Adds product to cart if double clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridViewBiedronkaQuery_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             PromoScraper.Product product = qs1.BiedronkaProducts[e.RowIndex];
@@ -77,6 +87,11 @@ namespace MarketScraper
 
         }
 
+        /// <summary>
+        /// Adds product to cart if double clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridViewSparQuery_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             PromoScraper.Product product = qs1.SparProducts[e.RowIndex];
@@ -94,11 +109,21 @@ namespace MarketScraper
             }
         }
 
+        /// <summary>
+        /// Pops up cart menu form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCart_Click(object sender, EventArgs e)
         {
             f4.Show();
         }
 
+        /// <summary>
+        /// Hides all related menu and opens main menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonMenu_Click(object sender, EventArgs e)
         {
             f4.Hide();
@@ -106,6 +131,11 @@ namespace MarketScraper
             Program.f1.Show();
         }
 
+        /// <summary>
+        /// Opens up main menu if form is closing
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form3_FormClosing(object sender, FormClosingEventArgs e)
         {
             Program.f1.Show();

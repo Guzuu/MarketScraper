@@ -8,6 +8,9 @@ namespace MarketScraper
 {
     static class Program
     {
+        /// <summary>
+        /// Created separately so its easier accessible 
+        /// </summary>
         static public Form1 f1;
         /// <summary>
         /// The main entry point for the application.

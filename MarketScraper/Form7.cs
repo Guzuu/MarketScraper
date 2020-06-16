@@ -15,6 +15,9 @@ namespace MarketScraper
         DBConnect db;
         int pickedOrderID;
 
+        /// <summary>
+        /// Downloads all orders from database and displays them in datagrid
+        /// </summary>
         public Form7()
         {
             InitializeComponent();
@@ -22,16 +25,26 @@ namespace MarketScraper
             dataGridViewOrders.Rows.Clear();
             foreach (DBConnect.Zamowienie zamowienie in db.SelectOrders())
             {
-                dataGridViewOrders.Rows.Add(zamowienie.id, zamowienie.data, zamowienie.cena, zamowienie.sklep);
+                dataGridViewOrders.Rows.Add(zamowienie.id, zamowienie.data, zamowienie.cena+"zł", zamowienie.sklep);
             }
         }
 
+        /// <summary>
+        /// Hides this form and opens up a main menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonMenu_Click(object sender, EventArgs e)
         {
             Hide();
             Program.f1.Show();
         }
 
+        /// <summary>
+        /// Prints double clicked order details on another datagrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridViewOrders_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             dataGridViewProductsFromDB.Rows.Clear();
@@ -44,6 +57,11 @@ namespace MarketScraper
             dataGridViewProductsFromDB.AutoResizeRows();
         }
 
+        /// <summary>
+        /// Removes order from database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonAcceptOrder_Click(object sender, EventArgs e)
         {
             if (dataGridViewProductsFromDB.RowCount != 0)
@@ -61,6 +79,11 @@ namespace MarketScraper
             else MessageBox.Show("Wybierz zamówienie.");
         }
 
+        /// <summary>
+        /// Opens up main menu if this form gets closed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form7_FormClosing(object sender, FormClosingEventArgs e)
         {
             Program.f1.Show();

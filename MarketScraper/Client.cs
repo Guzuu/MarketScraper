@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace MarketScraper
 {
+    /// <summary>
+    /// Client class containing personal data model
+    /// </summary>
     public class Client
     {
         public Client(string imie, string nazwisko, string miasto, string ulica, string KP, int tel)

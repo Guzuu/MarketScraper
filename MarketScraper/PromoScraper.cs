@@ -20,6 +20,9 @@ namespace MarketScraper
             LidlPromos = new List<Product>();
         }
 
+        /// <summary>
+        /// Scrapes image urls of discount products from Biedronka and Spar Sites
+        /// </summary>
         public void ScrapeImages()
         {
             var web = new HtmlWeb(); 
@@ -44,6 +47,10 @@ namespace MarketScraper
             }
         }
 
+        /// <summary>
+        /// Scrapes weekly discount products and new products from Lidl site
+        /// </summary>
+        /// <param name="page"></param>
         public void ScrapeLidl(string page)
         {
             var web = new HtmlWeb();
@@ -79,6 +86,11 @@ namespace MarketScraper
             }
         }
 
+        /// <summary>
+        /// Pretends to be a human to be able to download an image
+        /// </summary>
+        /// <param name="imageUrl"></param>
+        /// <returns></returns>
         public static Image DownloadImageFromUrl(string imageUrl)
         {
             Image image = null;
@@ -106,6 +118,12 @@ namespace MarketScraper
             return image;
         }
 
+        /// <summary>
+        /// Changes height of an image keeping aspect ratio, scaling to given width
+        /// </summary>
+        /// <param name="img"></param>
+        /// <param name="width"></param>
+        /// <returns></returns>
         public static Image ScaleImage(Image img, int width)
         {
             try
@@ -142,6 +160,9 @@ namespace MarketScraper
         public List<string> SparImg { get; private set; }
         public List<Product> LidlPromos { get; private set; }
 
+        /// <summary>
+        /// Product template
+        /// </summary>
         public struct Product
         {
             public Product(string imageUrl, string name, float price, string weight)

@@ -21,6 +21,11 @@ namespace MarketScraper
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Opens Promotions Form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonPromo_Click(object sender, EventArgs e)
         {
             f2 = new Form2();
@@ -28,6 +33,11 @@ namespace MarketScraper
             Program.f1.Hide();
         }
 
+        /// <summary>
+        /// Opens Scrape Search Menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonQuery_Click(object sender, EventArgs e)
         {
             f3 = new Form3();
@@ -35,6 +45,11 @@ namespace MarketScraper
             Program.f1.Hide();
         }
 
+        /// <summary>
+        /// Opens Orders Menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonOrders_Click(object sender, EventArgs e)
         {
             f7 = new Form7();

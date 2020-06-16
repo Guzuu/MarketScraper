@@ -26,6 +26,10 @@ namespace MarketScraper
             SparCart = new Dictionary<PromoScraper.Product, int>();
         }
 
+        /// <summary>
+        /// Reassembles cart datagrids from the data in dictionaries
+        /// </summary>
+        /// <param name="sender"></param>
         public void UpdateCart(object sender)
         {
             dataGridViewBiedronkaCart.Rows.Clear();
@@ -54,12 +58,22 @@ namespace MarketScraper
             dataGridViewSparCart.AutoResizeRows();
         }
 
+        /// <summary>
+        /// On close, hides this form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form4_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Hide();
             e.Cancel = true;
         }
 
+        /// <summary>
+        /// Clears the cart datagrids and calculation cells
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonClearCart_Click(object sender, EventArgs e)
         {
             BiedronkaCart.Clear();
@@ -72,6 +86,11 @@ namespace MarketScraper
             textBoxSumSum.Text = "0zł";
         }
 
+        /// <summary>
+        /// Generates shopping list with images for SPAR
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSaveListSpar_Click(object sender, EventArgs e)
         {
             if (SparCart.Count == 0) return;
@@ -93,6 +112,11 @@ namespace MarketScraper
             dataGridViewSparCart.Show();
         }
 
+        /// <summary>
+        /// Generates shopping list with images for Biedronka
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSaveListBiedronka_Click(object sender, EventArgs e)
         {
             if (BiedronkaCart.Count == 0) return;
@@ -114,12 +138,21 @@ namespace MarketScraper
             dataGridViewBiedronkaCart.Show();
         }
 
+        /// <summary>
+        /// Opens up personal details tab to finish the order
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonOrder_Click(object sender, EventArgs e)
         {
             Form6 f6 = new Form6(this);
             f6.Show(); 
         }
 
+        /// <summary>
+        /// Sets an order for specified client in database
+        /// </summary>
+        /// <param name="c1"></param>
         public void SetOrder(Client c1)
         {
             DBConnect db = new DBConnect();

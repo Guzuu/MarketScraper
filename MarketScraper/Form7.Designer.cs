@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridViewOrders = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,8 +41,10 @@
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonAcceptOrder = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductsFromDB)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridViewOrders
@@ -55,10 +57,10 @@
             this.Column3,
             this.Column4});
             this.dataGridViewOrders.Dock = System.Windows.Forms.DockStyle.Left;
-            this.dataGridViewOrders.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewOrders.Location = new System.Drawing.Point(0, 69);
             this.dataGridViewOrders.Name = "dataGridViewOrders";
             this.dataGridViewOrders.RowHeadersVisible = false;
-            this.dataGridViewOrders.Size = new System.Drawing.Size(423, 496);
+            this.dataGridViewOrders.Size = new System.Drawing.Size(423, 427);
             this.dataGridViewOrders.TabIndex = 0;
             this.dataGridViewOrders.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewOrders_CellDoubleClick);
             // 
@@ -90,7 +92,7 @@
             // 
             this.buttonMenu.BackColor = System.Drawing.Color.Goldenrod;
             this.buttonMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonMenu.Location = new System.Drawing.Point(438, 12);
+            this.buttonMenu.Location = new System.Drawing.Point(6, 12);
             this.buttonMenu.Name = "buttonMenu";
             this.buttonMenu.Size = new System.Drawing.Size(67, 26);
             this.buttonMenu.TabIndex = 11;
@@ -105,30 +107,30 @@
             this.dataGridViewProductsFromDB.AllowUserToResizeColumns = false;
             this.dataGridViewProductsFromDB.AllowUserToResizeRows = false;
             this.dataGridViewProductsFromDB.BackgroundColor = System.Drawing.Color.Tan;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewProductsFromDB.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewProductsFromDB.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewProductsFromDB.ColumnHeadersHeight = 28;
             this.dataGridViewProductsFromDB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridViewProductsFromDB.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column5,
             this.dataGridViewImageColumn1,
             this.dataGridViewTextBoxColumn1});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewProductsFromDB.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dataGridViewProductsFromDB.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridViewProductsFromDB.Location = new System.Drawing.Point(423, 76);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewProductsFromDB.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewProductsFromDB.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dataGridViewProductsFromDB.Location = new System.Drawing.Point(423, 69);
             this.dataGridViewProductsFromDB.MultiSelect = false;
             this.dataGridViewProductsFromDB.Name = "dataGridViewProductsFromDB";
             this.dataGridViewProductsFromDB.ReadOnly = true;
@@ -137,7 +139,7 @@
             this.dataGridViewProductsFromDB.RowTemplate.ReadOnly = true;
             this.dataGridViewProductsFromDB.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewProductsFromDB.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewProductsFromDB.Size = new System.Drawing.Size(482, 420);
+            this.dataGridViewProductsFromDB.Size = new System.Drawing.Size(482, 427);
             this.dataGridViewProductsFromDB.TabIndex = 12;
             // 
             // Column5
@@ -173,6 +175,16 @@
             this.buttonAcceptOrder.UseVisualStyleBackColor = false;
             this.buttonAcceptOrder.Click += new System.EventHandler(this.buttonAcceptOrder_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.buttonMenu);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(905, 69);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            // 
             // Form7
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -181,13 +193,14 @@
             this.ClientSize = new System.Drawing.Size(905, 496);
             this.Controls.Add(this.buttonAcceptOrder);
             this.Controls.Add(this.dataGridViewProductsFromDB);
-            this.Controls.Add(this.buttonMenu);
             this.Controls.Add(this.dataGridViewOrders);
+            this.Controls.Add(this.groupBox1);
             this.Name = "Form7";
             this.Text = "Zamówienia";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form7_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductsFromDB)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -205,5 +218,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

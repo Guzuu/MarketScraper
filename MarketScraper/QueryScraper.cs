@@ -21,6 +21,10 @@ namespace MarketScraper
             SparProducts = new List<PromoScraper.Product>();
         }
 
+        /// <summary>
+        /// Scrapes all of the results from given searched product name
+        /// </summary>
+        /// <param name="query"></param>
         public void ScrapeBiedronka(string query)
         {
             var web = new HtmlWeb();
@@ -51,6 +55,11 @@ namespace MarketScraper
             }
         }
 
+        /// <summary>
+        /// Scrapes all of the results from given searched product name and localization 
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="city"></param>
         public void ScrapeSpar(string query, string city)
         {
             var web = new HtmlWeb();

@@ -31,6 +31,7 @@
             this.buttonPromo = new System.Windows.Forms.Button();
             this.buttonQuery = new System.Windows.Forms.Button();
             this.buttonOrders = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonPromo
@@ -72,6 +73,19 @@
             this.buttonOrders.UseVisualStyleBackColor = false;
             this.buttonOrders.Click += new System.EventHandler(this.buttonOrders_Click);
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(623, 447);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 20);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "By Guzuu";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -79,12 +93,14 @@
             this.BackgroundImage = global::MarketScraper.Properties.Resources.MSmainBG;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(714, 476);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonOrders);
             this.Controls.Add(this.buttonQuery);
             this.Controls.Add(this.buttonPromo);
             this.Name = "Form1";
             this.Text = "Market Scraper";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -93,6 +109,7 @@
         private System.Windows.Forms.Button buttonPromo;
         private System.Windows.Forms.Button buttonQuery;
         private System.Windows.Forms.Button buttonOrders;
+        private System.Windows.Forms.Label label1;
     }
 }
 

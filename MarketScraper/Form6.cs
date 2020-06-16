@@ -20,6 +20,11 @@ namespace MarketScraper
 
         Form4 f4;
 
+        /// <summary>
+        /// Verifies the data from textboxes, creates client object and sets an order for him.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             if (textBox1.Text != "" && textBox2.Text != "" && textBox3.Text != "" && textBox6.Text != "" && textBox4.Text != "" && textBox5.Text != "")

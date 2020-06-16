@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace MarketScraper
 {
+    /// <summary>
+    /// Class needed to save cookie of location
+    /// </summary>
     public class MyWebClient
     {
         //The cookies will be here.
