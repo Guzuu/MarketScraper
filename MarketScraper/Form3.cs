@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace MarketScraper
 {
+    /// <summary>
+    /// Product search menu
+    /// </summary>
     public partial class Form3 : Form
     {
         QueryScraper qs1 = new QueryScraper();

@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace MarketScraper
 {
+    /// <summary>
+    /// Order menu
+    /// </summary>
     public partial class Form7 : Form
     {
         DBConnect db;

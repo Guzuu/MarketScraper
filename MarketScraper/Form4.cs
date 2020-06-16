@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace MarketScraper
 {
+    /// <summary>
+    /// Cart menu
+    /// </summary>
     public partial class Form4 : Form
     {
         public Dictionary<PromoScraper.Product, int> BiedronkaCart;

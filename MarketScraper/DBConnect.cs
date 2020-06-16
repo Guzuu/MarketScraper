@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 
 namespace MarketScraper
 {
-    class DBConnect
+    public class DBConnect
     {
         private MySqlConnection connection;
         private string server;

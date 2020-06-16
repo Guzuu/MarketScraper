@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace MarketScraper
 {
+    /// <summary>
+    /// Main menu form
+    /// </summary>
     public partial class Form1 : Form
     {
         Form2 f2;
