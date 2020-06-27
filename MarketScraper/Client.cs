@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace MarketScraper
 {
     /// <summary>
-    /// Client class containing personal data model
+    /// Client class containing personal data template
     /// </summary>
     public class Client
     {

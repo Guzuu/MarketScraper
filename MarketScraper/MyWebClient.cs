@@ -1,16 +1,12 @@
 ﻿using HtmlAgilityPack;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MarketScraper
 {
     /// <summary>
-    /// Class needed to save cookie of location
+    /// Class required to get and hold a cookie of user's location
     /// </summary>
     public class MyWebClient
     {
@@ -23,6 +19,11 @@ namespace MarketScraper
             _cookies = new CookieContainer();
         }
 
+        /// <summary>
+        /// downloads html document and gets the cookies of connection
+        /// </summary>
+        /// <param name="url">website link</param>
+        /// <returns>html document</returns>
         public HtmlDocument GetPage(string url)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);

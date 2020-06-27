@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MarketScraper
@@ -9,9 +6,10 @@ namespace MarketScraper
     static class Program
     {
         /// <summary>
-        /// Created separately so its easier accessible 
+        /// Created public so main menu form is easier accessible 
         /// </summary>
         static public Form1 f1;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

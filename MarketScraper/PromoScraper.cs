@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using HtmlAgilityPack;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -50,7 +47,7 @@ namespace MarketScraper
         /// <summary>
         /// Scrapes weekly discount products and new products from Lidl site
         /// </summary>
-        /// <param name="page"></param>
+        /// <param name="page">Link to the lidl products site</param>
         public void ScrapeLidl(string page)
         {
             var web = new HtmlWeb();

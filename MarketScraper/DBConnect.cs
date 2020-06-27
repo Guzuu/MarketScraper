@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
-using System.Globalization;
-using System.Data.SqlClient;
 
 namespace MarketScraper
 {
@@ -44,7 +39,7 @@ namespace MarketScraper
         /// <summary>
         /// Opens a connection with database 
         /// </summary>
-        /// <returns></returns>
+        /// <returns>DB connection success or fail</returns>
         //open connection to database
         private bool OpenConnection()
         {
@@ -63,11 +58,11 @@ namespace MarketScraper
                 switch (ex.Number)
                 {
                     case 0:
-                        MessageBox.Show("Cannot connect to server.  Contact administrator");
+                        MessageBox.Show("Nie można połączyć się z serwerem. Skontaktuj się z administratorem.");
                         break;
 
                     case 1045:
-                        MessageBox.Show("Invalid username/password, please try again");
+                        MessageBox.Show("Niepoprawne hasło, spróbuj ponownie");
                         break;
                 }
                 return false;
@@ -77,7 +72,7 @@ namespace MarketScraper
         /// <summary>
         /// Closes connection with database
         /// </summary>
-        /// <returns></returns>
+        /// <returns>DB closing success or fail</returns>
         //Close connection
         private bool CloseConnection()
         {
@@ -96,10 +91,10 @@ namespace MarketScraper
         /// <summary>
         /// Inserts order details and client details into the database
         /// </summary>
-        /// <param name="klient"></param>
-        /// <param name="cenatotal"></param>
-        /// <param name="produkty"></param>
-        /// <param name="sklep"></param>
+        /// <param name="klient">Client's name</param>
+        /// <param name="cenatotal">Total price for the order</param>
+        /// <param name="produkty">List of products for this order</param>
+        /// <param name="sklep">Shop name of order</param>
         //Insert statement
         public void Insert(Client klient, float cenatotal, Dictionary<PromoScraper.Product, int> produkty, string sklep)
         {
@@ -140,7 +135,7 @@ namespace MarketScraper
         /// <summary>
         /// Removes order and its products from database
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id of order to remove from database</param>
         //Delete statement
         public void Delete(int id)
         {
@@ -157,7 +152,7 @@ namespace MarketScraper
         /// <summary>
         /// Selects all active orders from database
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of orders</returns>
         //Select statements
         public List<Zamowienie> SelectOrders()
         {
@@ -196,8 +191,8 @@ namespace MarketScraper
         /// <summary>
         /// Selects order products of specified order
         /// </summary>
-        /// <param name="zamid"></param>
-        /// <returns></returns>
+        /// <param name="zamid">ID of order</param>
+        /// <returns>List of products in the order</returns>
         public Dictionary<PromoScraper.Product, int> SelectOrderDetails(int zamid)
         {
             string query = $"SELECT * FROM `Produkty` WHERE `zamowienieid`='{zamid}'";

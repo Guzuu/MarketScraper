@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using HtmlAgilityPack;
-using System.Net;
-using System.IO;
 
 namespace MarketScraper
 {
@@ -24,7 +19,7 @@ namespace MarketScraper
         /// <summary>
         /// Scrapes all of the results from given searched product name
         /// </summary>
-        /// <param name="query"></param>
+        /// <param name="query">product name</param>
         public void ScrapeBiedronka(string query)
         {
             var web = new HtmlWeb();
@@ -58,8 +53,8 @@ namespace MarketScraper
         /// <summary>
         /// Scrapes all of the results from given searched product name and localization 
         /// </summary>
-        /// <param name="query"></param>
-        /// <param name="city"></param>
+        /// <param name="query">product name</param>
+        /// <param name="city">region name ex. "Polska"</param>
         public void ScrapeSpar(string query, string city)
         {
             var web = new HtmlWeb();

@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MarketScraper
@@ -155,7 +149,7 @@ namespace MarketScraper
         /// <summary>
         /// Sets an order for specified client in database
         /// </summary>
-        /// <param name="c1"></param>
+        /// <param name="c1">Client object</param>
         public void SetOrder(Client c1)
         {
             DBConnect db = new DBConnect();
