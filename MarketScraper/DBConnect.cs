@@ -25,10 +25,10 @@ namespace MarketScraper
         //Initialize values
         private void Initialize()
         {
-            server = "sql7.freemysqlhosting.net";
-            database = "sql7348005";
-            uid = "sql7348005";
-            password = "kRrxlQM87f";
+            server = "remotemysql.com";
+            database = "Kb0PuD6stL";
+            uid = "Kb0PuD6stL";
+            password = "v7HwASe0hT";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
@@ -224,6 +224,84 @@ namespace MarketScraper
             else
             {
                 return produkty;
+            }
+        }
+
+        /// <summary>
+        /// Selects a client from given id of a client
+        /// </summary>
+        /// <param name="clientId">Id of a client</param>
+        /// <returns>Client object</returns>
+        public Client selectClientDetails(int clientId)
+        {
+            string query = $"SELECT * FROM `Klient` WHERE `id`='{clientId}'";
+            Client c1 = new Client();
+
+            //Open connection
+            if (this.OpenConnection() == true)
+            {
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    c1 = new Client(dataReader["imie"] + "", dataReader["nazwisko"] + "", dataReader["miasto"] + "", dataReader["ulica"] + "", dataReader["kod_pocztowy"] + "", int.Parse(dataReader["tel"] + ""));
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                this.CloseConnection();
+
+                //return list to be displayed
+                return c1;
+            }
+            else
+            {
+                return c1;
+            }
+        }
+
+        /// <summary>
+        /// Selects Client id from order 
+        /// </summary>
+        /// <param name="zamid">Order id</param>
+        /// <returns>Client id</returns>
+        public int selectClientId(int zamid)
+        {
+            string query = $"SELECT `klientid` FROM `Zamowienia` WHERE `id`='{zamid}'";
+            int klientid = 0;
+
+            //Open connection
+            if (this.OpenConnection() == true)
+            {
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    klientid = int.Parse(dataReader["klientid"] + "");
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                this.CloseConnection();
+
+                //return list to be displayed
+                return klientid;
+            }
+            else
+            {
+                return klientid;
             }
         }
 

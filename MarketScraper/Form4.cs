@@ -91,7 +91,12 @@ namespace MarketScraper
         private void buttonSaveListSpar_Click(object sender, EventArgs e)
         {
             if (SparCart.Count == 0) return;
-            int DGVw = 400, DGVh = dataGridViewSparCart[0, 1].Size.Height * dataGridViewSparCart.RowCount;
+
+            int DGVw = 410, DGVh = 30;
+            for (int x = 0; x < SparCart.Count; x++)
+            {
+                DGVh += dataGridViewSparCart.Rows[x].Height;
+            }
             Bitmap Layout = new Bitmap(DGVw, DGVh);
 
             dataGridViewSparCart.Hide();
@@ -100,7 +105,7 @@ namespace MarketScraper
             dataGridViewSparCart.Height = DGVh + 5;
             dataGridViewSparCart.DrawToBitmap(Layout, new Rectangle(0, 0, DGVw, DGVh));
 
-            saveFileDialog1.FileName += "Lista Zakupów Spar" + System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm");
+            saveFileDialog1.FileName = "Lista Zakupów Spar" + System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm");
             saveFileDialog1.ShowDialog();
             Console.WriteLine(saveFileDialog1.FileName);
             Layout.Save(saveFileDialog1.FileName);
@@ -117,7 +122,12 @@ namespace MarketScraper
         private void buttonSaveListBiedronka_Click(object sender, EventArgs e)
         {
             if (BiedronkaCart.Count == 0) return;
-            int DGVw = 400, DGVh = dataGridViewBiedronkaCart[0, 1].Size.Height * dataGridViewBiedronkaCart.RowCount;
+
+            int DGVw = 410, DGVh = 30;
+            for(int x = 0; x<BiedronkaCart.Count; x++)
+            {
+                 DGVh += dataGridViewBiedronkaCart.Rows[x].Height;
+            }
             Bitmap Layout = new Bitmap(DGVw, DGVh);
 
             dataGridViewBiedronkaCart.Hide();
@@ -126,7 +136,7 @@ namespace MarketScraper
             dataGridViewBiedronkaCart.Height = DGVh + 5;
             dataGridViewBiedronkaCart.DrawToBitmap(Layout, new Rectangle(0, 0, DGVw, DGVh));
 
-            saveFileDialog1.FileName += "Lista Zakupów Biedronka" + System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm");
+            saveFileDialog1.FileName = "Lista Zakupów Biedronka" + System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm");
             saveFileDialog1.ShowDialog();
             Console.WriteLine(saveFileDialog1.FileName);
             Layout.Save(saveFileDialog1.FileName);

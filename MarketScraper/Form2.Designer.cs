@@ -41,6 +41,7 @@
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.labelInfo = new System.Windows.Forms.Label();
             this.buttonMenu = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBiedronkaPromo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSparPromo)).BeginInit();
@@ -181,6 +182,7 @@
             this.dataGridViewLidlPromo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridViewLidlPromo.Size = new System.Drawing.Size(421, 457);
             this.dataGridViewLidlPromo.TabIndex = 3;
+            this.dataGridViewLidlPromo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewLidlPromo_CellClick);
             // 
             // dataGridViewImageColumn1
             // 
@@ -199,6 +201,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Wheat;
+            this.groupBox1.Controls.Add(this.labelInfo);
             this.groupBox1.Controls.Add(this.buttonMenu);
             this.groupBox1.Controls.Add(this.buttonGetPromos);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -207,6 +210,17 @@
             this.groupBox1.Size = new System.Drawing.Size(1263, 52);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
+            // 
+            // labelInfo
+            // 
+            this.labelInfo.AutoSize = true;
+            this.labelInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelInfo.Location = new System.Drawing.Point(869, 9);
+            this.labelInfo.Name = "labelInfo";
+            this.labelInfo.Size = new System.Drawing.Size(127, 40);
+            this.labelInfo.TabIndex = 12;
+            this.labelInfo.Text = "Kliknij na zdjęcie \r\naby je pobrać.";
+            this.labelInfo.Visible = false;
             // 
             // buttonMenu
             // 
@@ -236,6 +250,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSparPromo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLidlPromo)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -252,5 +267,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button buttonMenu;
+        private System.Windows.Forms.Label labelInfo;
     }
 }

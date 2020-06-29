@@ -6,6 +6,11 @@ namespace MarketScraper
     /// </summary>
     public class Client
     {
+        public Client()
+        {
+
+        }
+
         public Client(string imie, string nazwisko, string miasto, string ulica, string KP, int tel)
         {
             this.imie = imie;

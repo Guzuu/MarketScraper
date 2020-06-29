@@ -50,7 +50,7 @@ namespace MarketScraper
 
             foreach (var product in s1.LidlPromos)
             {
-                dataGridViewLidlPromo.Rows.Add(PromoScraper.ScaleImage(PromoScraper.DownloadImageFromUrl(product.imageUrl), 200), product.name + "\n" + product.price + "zł\n" + product.weight);
+                dataGridViewLidlPromo.Rows.Add(null, product.name + "\n" + product.price + "zł\n" + product.weight);
             }
 
             dataGridViewBiedronkaPromo.Columns[0].HeaderText = "Biedronka (" + s1.BiedrImg.Count + ")";
@@ -63,6 +63,7 @@ namespace MarketScraper
 
             loading.Hide();
             Text = "Promocje";
+            labelInfo.Show();
         }
 
         /// <summary>
@@ -84,6 +85,17 @@ namespace MarketScraper
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)
         {
             Program.f1.Show();
+        }
+
+        /// <summary>
+        /// Click a row to download lidl promo image (performance issue with downloading all images at once)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridViewLidlPromo_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) dataGridViewLidlPromo[0, e.RowIndex].Value = PromoScraper.ScaleImage(PromoScraper.DownloadImageFromUrl(s1.LidlPromos[e.RowIndex].imageUrl), 200);
+            dataGridViewLidlPromo.AutoResizeRow(e.RowIndex);
         }
     }
 }

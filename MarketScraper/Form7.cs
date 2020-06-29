@@ -55,7 +55,7 @@ namespace MarketScraper
         }
 
         /// <summary>
-        /// Removes order from database
+        /// Removes order from database and gives client delivery information
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -63,6 +63,8 @@ namespace MarketScraper
         {
             if (dataGridViewProductsFromDB.RowCount != 0)
             {
+                Client c1 = db.selectClientDetails(db.selectClientId(pickedOrderID));
+                MessageBox.Show("Przyjąłeś zamówienie. Szczegóły:\n" + c1.imie + " " + c1.nazwisko + "\n" + c1.miasto + " " + c1.KP + "\n" + c1.ulica + "\n" + c1.tel);
                 db.Delete(pickedOrderID);
 
                 dataGridViewOrders.Rows.Clear();
@@ -71,7 +73,6 @@ namespace MarketScraper
                 {
                     dataGridViewOrders.Rows.Add(zamowienie.id, zamowienie.data, zamowienie.cena, zamowienie.sklep);
                 }
-                MessageBox.Show("Przyjąłeś zamówienie.");
             }
             else MessageBox.Show("Wybierz zamówienie.");
         }
