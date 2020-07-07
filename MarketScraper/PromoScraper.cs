@@ -35,7 +35,7 @@ namespace MarketScraper
             
             doc = web.Load("https://spar.pl/promocje/");
 
-            Links = doc.DocumentNode.SelectNodes("//div[@class='block']/div[@class='flex']/div/img");
+            Links = doc.DocumentNode.SelectNodes("//div[@class='block']/div[@class='flex']/div/div[2]/a/img");
 
             if (Links != null) foreach (var link in Links)
             {
